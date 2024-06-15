@@ -1,4 +1,4 @@
-#include <Adafruit_Liquid.h> // Inclui a biblioteca para o controle de um display LCD usando o I2C da Adafruit
+#include <Adafruit_LiquidCrystal.h> // Inclui a biblioteca para o controle de um display LCD usando o I2C da Adafruit
 
 Adafruit_LiquidCrystal lcd_1(0); // Criação do objeto lcd_1 para controle do display LCD no endereço I2C 0
 
@@ -20,23 +20,20 @@ int Pedeonumero() {
   int num;
   while (!Serial.available()); // Espera até que haja dados disponíveis na serial
   a = Serial.read() - 48; // Lê o primeiro dígito do primeiro número
-  while (!Serial.available());
+  while (!Serial.available);
   b = Serial.read() - 48; // Lê o segundo dígito do primeiro número
-  while (!Serial.available());
+  while (!Serial.available);
   c = Serial.read() - 48; // Lê o terceiro dígito do primeiro número
   Serial.println("Digite um numero inteiro de 3 digitos da segunda operacao:: "); // Solicita o segundo número ao usuário
-
   num = a * 100 + b * 10 + c; // Calcula o primeiro número a partir dos dígitos lidos
   return num;
 }
 
-void pedeNumero(){
-
-   Serial.println("Digite um numero inteiro de 3 digitos da primeira operacao: "); // Solicita o primeiro número ao usuário
-   num1 = Pedeonumero();
-     
-   Serial.println("Digite um numero inteiro de 3 digitos da segunda operacao:: "); // Solicita o segundo número ao usuário
-   num2 = Pedeonumero();
+void pedeNumero() {
+  Serial.println("Digite um numero inteiro de 3 digitos da primeira operacao: "); // Solicita o primeiro número ao usuário
+  num1 = Pedeonumero();
+  Serial.println("Digite um numero inteiro de 3 digitos da segunda operacao:: "); // Solicita o segundo número ao usuário
+  num2 = Pedeonumero();
 }
 
 // Função para pedir e ler o operador da operação
@@ -71,7 +68,7 @@ void PedeOperador() {
 
 // Função principal que executa repetidamente
 void loop() {
-  Pedeonumero(); // Chama a função para pedir os números
+  pedeNumero(); // Chama a função para pedir os números
   PedeOperador(); // Chama a função para pedir o operador
   Serial.println(Resultado); // Exibe o resultado na serial
 
@@ -79,6 +76,6 @@ void loop() {
   lcd_1.print(String(num1) + String(operador) + String(num2) + "=" + String(Resultado));
   delay(500); // Aguarda 500 milissegundos
   lcd_1.setCursor(1, 1); // Move o cursor para a posição 1,1 do LCD
-  
+
   delay(500); // Aguarda mais 500 milissegundos
 }
