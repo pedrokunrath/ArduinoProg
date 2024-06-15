@@ -1,4 +1,4 @@
-#include <Adafruit_LiquidCrystal.h> // Inclui a biblioteca para o controle de um display LCD usando o I2C da Adafruit
+#include <Adafruit_Liquid.h> // Inclui a biblioteca para o controle de um display LCD usando o I2C da Adafruit
 
 Adafruit_LiquidCrystal lcd_1(0); // Criação do objeto lcd_1 para controle do display LCD no endereço I2C 0
 
