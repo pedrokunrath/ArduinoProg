@@ -7,6 +7,7 @@ int X, Y = 0; // Declaração de variáveis inteiras para armazenar as coordenad
 int SensorX = 7; // Pinagem para o sensor de distância no eixo X
 int SensorY = 6; // Pinagem para o sensor de distância no eixo Y
 
+
 Adafruit_LiquidCrystal lcd_1(0); // Criação do objeto lcd_1 para controle do display LCD no endereço I2C 0
 
 void setup() {
@@ -20,6 +21,7 @@ void SolicitaXY() {
   a = Serial.read() - 48; // Lê o primeiro dígito da coordenada X
   while (!Serial.available());
   b = Serial.read() - 48; // Lê o segundo dígito da coordenada X
+
   while (!Serial.available());
   c = Serial.read() - 48; // Lê o terceiro dígito da coordenada X
 
